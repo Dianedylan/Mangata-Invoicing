@@ -1,0 +1,37 @@
+
+<h4 mat-dialog-title> Add Item</h4>
+  
+  <form [formGroup]="combomealForm" (ngSubmit)="onFormSubmit()">
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Item No.</mat-label>
+      <input matInput type="text" placeholder="Enter number" formControlName="id">
+  </mat-form-field> -->
+  
+  <mat-form-field appearance="outline">
+      <mat-label>Item Name</mat-label>
+      <input matInput placeholder="Meal Name" formControlName="itemName">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <mat-label>Value</mat-label>
+      <input placeholder="Value, cost" matInput formControlName="itemValue">
+  </mat-form-field>
+
+  <!-- <mat-form-field appearance="outline">
+      <mat-label>Date Added</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateAdded">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field> -->
+  
+<mat-form-field appearance="outline">
+    <input placeholder="Add Image" matInput formControlName="itemUrl">
+</mat-form-field>
+  
+<div mat-dialog-actions class="action">
+  <!-- <button mat-raised-button type="button" [mat-dialog-close]="false">Close</button> -->
+  <button mat-raised-button color="primary" type="submit">{{ data ? 'Update': 'Add Food Item' }}</button>
+</div>
+
+</form>

@@ -1,0 +1,147 @@
+.results {
+    display: grid;
+    column-gap: 14px;
+    row-gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
+    margin-top: 50px;
+    justify-content: space-around;
+  }
+  
+  input[type="text"] {
+    border: solid 1px var(--primary-color);
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 4px;
+    display: inline-block;
+    width: 30%;
+  }
+  
+  button {
+    padding: 10px;
+    border: solid 1px var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+  }
+  
+  @media (min-width: 500px) and (max-width: 768px) {
+    .results {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    input[type="text"] {
+        width: 70%;
+    }   
+  }
+  
+  @media (max-width: 499px) {
+    .results {
+        grid-template-columns: 1fr;
+    }    
+  }
+
+
+
+  .comboss{
+    margin:80px 0 0 70px;
+  }
+  .comboss .addmealbtn button{
+      
+    height:35px;
+    width:120px;
+    background-color:#6d5e38 ;
+    color: white;
+  
+  }
+  
+  /*searchform*/
+  * {
+      box-sizing: border-box;
+    }
+    
+    form.input input[type=text] {
+      padding: 10px;
+      height: 50px;
+      font-size: 17px;
+      border: 2px solid rgb(228, 225, 225);
+      float: left;
+      width: 60%;
+      margin: 30px 0 30px 0;
+      background: white;
+    }
+    
+    form.input button {
+      float:left;
+      width: 9%;
+      height: 50px;
+      margin: 30px 0 0 0;
+      padding: 10px;
+      background:#6d5e38;
+      color: white;
+      font-size: 17px;
+      border: 1px solid grey;
+
+      cursor: pointer;
+    }
+    form.input button:hover {
+      background: #7a1205;
+    }
+    
+    form.input::after {
+      content: "";
+      clear: both;
+    }
+  
+    /*addcategory button*/
+    form.input .mealadding input[type=text] {
+      padding: 10px;
+      height: 50px;
+      font-size: 17px;
+      border: 2px solid rgb(228, 225, 225);
+      float: left;
+      width: 60%;
+      margin: 30px 0 30px 0;
+      background: white;
+    }
+    form.input .mealadding button{
+      float:left;
+      width: 10%;
+      height: 50px;
+      margin: 20px 0 0 50px;
+      padding: 10px;
+      background:white;
+      color: #c1584a;
+      font-size: 17px;
+      border: 1px solid#c1584a;
+      cursor: pointer;
+    }
+    form.input .mealadding button:hover {
+      background: #c5c2c2;
+    }
+    
+    form.input::after {
+      content: "";
+      clear: both;
+    }
+  
+    /*search menubar*/
+  .menubar p{
+      color: rgb(107, 106, 106);
+      font-size: xx-large;
+  }
+  .menubar{
+      margin: 30px 0 30px 120px;
+  }
+  .tabled img{
+    border-radius: 15%;
+    padding:5px 5px 5px 0px;
+  }
+  ::ng-deep .mat-paginator-container {
+
+    justify-content: flex-start !important; 
+
+    width: 50% !important;
+}
+  
+  
+  
+  

@@ -1,0 +1,177 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "customers": [
+    {
+      "name": "Job Kay",
+      "item": "Pizza",
+      "qty": 3,
+      "value": 200,
+      "date": "2023-06-30T21:00:00.000Z",
+      "status": "pending",
+      "action": "",
+      "imgicon": "../assets/user.png",
+      "id": 2
+    },
+    {
+      "name": "Bosun Jones",
+      "item": "Chapati and Beans",
+      "qty": 15,
+      "value": 500,
+      "date": "2023-07-14T21:00:00.000Z",
+      "status": "pending",
+      "action": "",
+      "imgicon": "../assets/user.png",
+      "id": 3
+    },
+    {
+      "name": "Harry J",
+      "item": "chips",
+      "qty": 1,
+      "value": 401,
+      "date": "2023-07-06T21:00:00.000Z",
+      "status": "pending",
+      "action": "",
+      "imgicon": "../assets/user.png",
+      "id": 4
+    }
+  ],
+  "orderdetails": [
+    {
+      "name": "John Doe",
+      "itemName": "Widget A",
+      "itemQuantity": 3,
+      "itemValue": 10.99,
+      "orderDate": "2023-07-01",
+      "itemStatus": "Processing",
+      "action": "",
+      "imgicon": "../assets/user.png",
+      "id": 1
+    },
+    {
+      "name": "Jane Smith",
+      "itemName": "Widget B",
+      "itemQuantity": 2,
+      "itemValue": 5.99,
+      "orderDate": "2023-07-02",
+      "itemStatus": "Processing",
+      "action": "",
+      "imgicon": "../assets/user.png",
+      "id": 2
+    },
+    {
+      "name": "Mark Johnson",
+      "itemName": "Widget C",
+      "itemQuantity": 1,
+      "itemValue": 8.99,
+      "orderDate": "2023-07-03",
+      "itemStatus": "pending",
+      "action": "",
+      "imgicon": "../assets/user.png",
+      "id": 3
+    }
+  ],
+  "menucombomeal": [
+    {
+      "id": 1,
+      "itemName": "Widget A",
+      "itemUrl": "../assets/goods1.jpg",
+      "itemValue": 10.99,
+      "dateAdded": "2023-07-01",
+      "action": ""
+    },
+    {
+      "id": 2,
+      "itemName": "Widget B",
+      "itemUrl": "../assets/goods2.jpg",
+      "itemValue": 5.99,
+      "dateAdded": "2023-07-02",
+      "action": ""
+    },
+    {
+      "id": 3,
+      "itemName": "Widget C",
+      "itemUrl": "../assets/goods3.jpg",
+      "itemValue": 8.99,
+      "dateAdded": "2023-07-03",
+      "action": ""
+    },
+    {
+      "id": 4,
+      "itemName": "Widget D",
+      "itemUrl": "../assets/goods4.jpg",
+      "itemValue": 15.99,
+      "dateAdded": "2023-07-04",
+      "action": ""
+    },
+    {
+      "id": 5,
+      "itemName": "Widget E",
+      "itemUrl": "../assets/goods5.jpg",
+      "itemValue": 7.99,
+      "dateAdded": "2023-07-05",
+      "action": ""
+    },
+    {
+      "itemName": "Widget F",
+      "itemUrl": "https://example.com/widget-f",
+      "itemValue": 12.99,
+      "dateAdded": "2023-07-06"
+    },
+    {
+      "itemName": "Widget G",
+      "itemUrl": "https://example.com/widget-g",
+      "itemValue": 9.99,
+      "dateAdded": "2023-07-07"
+    },
+    {
+      "itemName": "Widget H",
+      "itemUrl": "https://example.com/widget-h",
+      "itemValue": 11.99,
+      "dateAdded": "2023-07-08"
+    },
+    {
+      "itemName": "Widget I",
+      "itemUrl": "https://example.com/widget-i",
+      "itemValue": 6.99,
+      "dateAdded": "2023-07-09"
+    },
+    {
+      "itemName": "Widget J",
+      "itemUrl": "https://example.com/widget-j",
+      "itemValue": 14.99,
+      "dateAdded": "2023-07-10"
+    },
+    {
+      "id": 6,
+      "itemUrl": "this.png",
+      "itemName": "oil",
+      "itemValue": "2000",
+      "dateAdded": "",
+      "action": ""
+    },
+    {
+      "id": 7,
+      "itemUrl": "image3.jpg",
+      "itemName": "Scalp Oil",
+      "itemValue": "2000",
+      "dateAdded": "",
+      "action": ""
+    }
+  ]
+}
