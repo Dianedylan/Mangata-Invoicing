@@ -2,22 +2,37 @@ import { Component, OnInit, ViewChild, inject, Input } from '@angular/core';
 // import { Menu_products } from '../menu_products';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { GoodsExStockComponent } from '../goods-ex-stock/goods-ex-stock.component';
-// import { MenusinglemealsComponent } from '../menu/menusinglemeals/menusinglemeals.component';
+// import { OrderGoodsDialogComponent } from '../order-goods-dialog/order-goods-dialog.component';
 import { OrderService } from '../order.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SweetAlertService } from '../sweet-alert.service';
-import { MatMenu, MatMenuContent } from '@angular/material';
+import { MatMenu, MatMenuContent, MatIcon } from '@angular/material';
+import { OrderGoodsDialogComponent } from '../order-goods-dialog/order-goods-dialog.component';
 
 export interface Menu_products{
   id: number;
   comboname: string;
   photo: string;
   value: number;
-  date: string;
-  action:string;
+  code: string;
+  action:number;
 };
+
+export interface order_items{
+  id: number;
+  firstlastname: string;
+  address: string;
+  phone: string;
+  email: string;
+  itemName: string;
+  qty:number;
+  itemValue: number;
+  code: string;
+
+};
+
 
 @Component({
   selector: 'app-dashboard',
@@ -28,16 +43,12 @@ export interface Menu_products{
 
 export class DashboardComponent implements OnInit {
 
-  displayedColumns = [
-    'id',
-    'itemName',
-    'itemUrl',
-    'itemValue',
-    'dateAdded',
-    'action',
-  ];
+  displayedColumns = ['id','itemName','itemUrl','itemValue','code','action'];
+  displayedOrderColumns = ['id','firstlastname','address','phone','email','itemName','qty', 'itemValue', 'code', 'action'];
 
   dataSource!: MatTableDataSource<any>;
+  orderDataSource!: MatTableDataSource<any>;
+
   trendingcomboList : Menu_products[] = [];
   isContinue = true;
 
@@ -54,6 +65,7 @@ export class DashboardComponent implements OnInit {
   
 ngOnInit(): void {
   this.getcomboList();
+  this.getOrderList();
 
 }
 
@@ -65,6 +77,17 @@ openAddEditMealForm() {
       if (val) {
         console.log(val);
         this.getcomboList();
+      }
+    },
+  });
+}
+openOrderItemForm() {
+  const dialogRef = this._dialog.open(OrderGoodsDialogComponent,{width:"100%"});
+  dialogRef.afterClosed().subscribe({
+    next: (val) => {
+      if (val) {
+        console.log(val);
+        this.getOrderList();
       }
     },
   });
@@ -86,6 +109,32 @@ getcomboList() {
 }
 
 
+getOrderList() {
+  this._orderService.getOrderList().subscribe(res => {
+      console.log('creeesults',res);
+
+      this.orderDataSource = new MatTableDataSource(res);
+      console.log('cresults',res[0]);
+      
+      // this.dataSource.sort = this.sort;
+      // this.dataSource.paginator = this.paginator;
+  })
+    error: console.log
+}
+
+deleteOrder(id: number) {
+  this._orderService.deleteOrder(id).subscribe({
+    next: (res) => {
+      this._sweetAlerts.showSuccessAlert("Order item deleted successfully!", 'success');
+      this.getOrderList();
+    },
+    error: console.log,
+  });
+}
+
+
+
+
 ////
 applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value;
@@ -101,7 +150,6 @@ applyFilter(event: Event) {
 deletecombomeal(id: number) {
   this._orderService.deletecombomeal(id).subscribe({
     next: (res) => {
-      //this._coreService.openSnackBar('Employee deleted!', 'done');
       this._sweetAlerts.showSuccessAlert("Order item deleted successfully!", 'success');
       this.getcomboList();
     },

@@ -9,13 +9,17 @@
   
   <mat-form-field appearance="outline">
       <mat-label>Item Name</mat-label>
-      <input matInput placeholder="Meal Name" formControlName="itemName">
+      <input matInput placeholder="Item name" formControlName="itemName">
   </mat-form-field>
 
   <mat-form-field appearance="outline">
       <mat-label>Value</mat-label>
-      <input placeholder="Value, cost" matInput formControlName="itemValue">
+      <input placeholder="cost" matInput formControlName="itemValue">
   </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Quantity</mat-label>
+    <input placeholder="qty In" matInput formControlName="action">
+</mat-form-field>
 
   <!-- <mat-form-field appearance="outline">
       <mat-label>Date Added</mat-label>
@@ -26,12 +30,13 @@
   </mat-form-field> -->
   
 <mat-form-field appearance="outline">
-    <input placeholder="Add Image" matInput formControlName="itemUrl">
+    <input placeholder="Add item code" matInput formControlName="code">
 </mat-form-field>
   
 <div mat-dialog-actions class="action">
   <!-- <button mat-raised-button type="button" [mat-dialog-close]="false">Close</button> -->
-  <button mat-raised-button color="primary" type="submit">{{ data ? 'Update': 'Add Food Item' }}</button>
+  <button mat-button color="primary" type="submit">{{ data ? 'Update': 'Add Item' }}</button>
 </div>
 
 </form>
+

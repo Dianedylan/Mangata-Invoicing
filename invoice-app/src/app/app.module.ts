@@ -23,14 +23,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrderGoodsDialogComponent } from './order-goods-dialog/order-goods-dialog.component'; 
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    GoodsExStockComponent
+    GoodsExStockComponent,
+    OrderGoodsDialogComponent
   ],
   imports: [
     BrowserModule,

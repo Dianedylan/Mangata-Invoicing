@@ -26,11 +26,11 @@ export class GoodsExStockComponent implements OnInit {
     
   combomealForm = new FormGroup({
     id: new FormControl(""),
-     itemUrl: new FormControl("", Validators.required),
+     code: new FormControl("", Validators.required),
      itemName: new FormControl("", Validators.required),
      itemValue: new FormControl("", Validators.required),
      dateAdded: new FormControl(""),
-     action: new FormControl("")
+     action: new FormControl("", Validators.required)
    });
 
     

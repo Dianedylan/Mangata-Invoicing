@@ -21,6 +21,10 @@ export class OrderService {
   getcomboList(): Observable<any> {
     return this._http.get('http://localhost:3000/menucombomeal'); 
   }
+  getOrderList(): Observable<any> {
+    return this._http.get('http://localhost:3000/orderDetails'); 
+  }
+
 
   deletecombomeal(id: number): Observable<any> {
     return this._http.delete(`http://localhost:3000/menucombomeal/${id}`);
@@ -32,6 +36,18 @@ export class OrderService {
 
   addcombomeal(data: any): Observable<any> {
     return this._http.post('http://localhost:3000/menucombomeal', data);
+  }
+
+  deleteOrder(id: number): Observable<any> {
+    return this._http.delete(`http://localhost:3000/orderDetails/${id}`);
+  }
+
+  editOrder(id: number, data: any): Observable<any> {
+    return this._http.put(`http://localhost:3000/orderDetails/${id}`, data);
+  }
+
+  addOrder(data: any): Observable<any> {
+    return this._http.post('http://localhost:3000/orderDetails', data);
   }
 
 

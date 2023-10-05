@@ -1,0 +1,53 @@
+
+<form [formGroup]="orderForm" (ngSubmit)="onFormSubmit()">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Item name" formControlName="firstlastname">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="" formControlName="address">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Phone number</mat-label>
+        <input matInput placeholder="Item name" formControlName="phone">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Item name" formControlName="email">
+    </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+      <mat-label>Item</mat-label>
+      <input matInput placeholder="Item name" formControlName="ItemName">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Quantity</mat-label>
+    <input matInput placeholder="qty" formControlName="qty">
+</mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <mat-label>Price Per Unit</mat-label>
+      <input placeholder="cost" matInput formControlName="itemValue">
+  </mat-form-field>
+
+  <!-- <mat-form-field appearance="outline">
+      <mat-label>Date Added</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateAdded">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field> -->
+  
+<mat-form-field appearance="outline">
+    <input placeholder="Add item code" matInput formControlName="code">
+</mat-form-field>
+  
+<div mat-dialog-actions class="action">
+  <!-- <button mat-raised-button type="button" [mat-dialog-close]="false">Close</button> -->
+  <button mat-button color="primary" type="submit">{{ data ? 'Update': 'Make Order' }}</button>
+</div>
+
+</form>
+

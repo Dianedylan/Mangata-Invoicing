@@ -51,39 +51,17 @@
       "id": 4
     }
   ],
-  "orderdetails": [
+  "orderDetails": [
     {
-      "name": "John Doe",
+      "id":1 ,
+      "firstLastname": "John Doe",
+      "address": "2023-07-01",
+      "phone": "0711111111",
+      "email": "john@gmail.con",
       "itemName": "Widget A",
-      "itemQuantity": 3,
+      "qty": 3,
       "itemValue": 10.99,
-      "orderDate": "2023-07-01",
-      "itemStatus": "Processing",
-      "action": "",
-      "imgicon": "../assets/user.png",
-      "id": 1
-    },
-    {
-      "name": "Jane Smith",
-      "itemName": "Widget B",
-      "itemQuantity": 2,
-      "itemValue": 5.99,
-      "orderDate": "2023-07-02",
-      "itemStatus": "Processing",
-      "action": "",
-      "imgicon": "../assets/user.png",
-      "id": 2
-    },
-    {
-      "name": "Mark Johnson",
-      "itemName": "Widget C",
-      "itemQuantity": 1,
-      "itemValue": 8.99,
-      "orderDate": "2023-07-03",
-      "itemStatus": "pending",
-      "action": "",
-      "imgicon": "../assets/user.png",
-      "id": 3
+      "code": "GDK1"
     }
   ],
   "menucombomeal": [
@@ -92,86 +70,91 @@
       "itemName": "Widget A",
       "itemUrl": "../assets/goods1.jpg",
       "itemValue": 10.99,
-      "dateAdded": "2023-07-01",
-      "action": ""
+      "code": "GDK1",
+      "action": 45
     },
     {
       "id": 2,
       "itemName": "Widget B",
       "itemUrl": "../assets/goods2.jpg",
       "itemValue": 5.99,
-      "dateAdded": "2023-07-02",
-      "action": ""
+      "code": "GDK2",
+      "action": 39
     },
     {
       "id": 3,
       "itemName": "Widget C",
       "itemUrl": "../assets/goods3.jpg",
       "itemValue": 8.99,
-      "dateAdded": "2023-07-03",
-      "action": ""
+      "code": "GDK3",
+      "action": 20
     },
     {
       "id": 4,
       "itemName": "Widget D",
       "itemUrl": "../assets/goods4.jpg",
       "itemValue": 15.99,
-      "dateAdded": "2023-07-04",
-      "action": ""
+      "code": "GDK4",
+      "action": 24
     },
     {
       "id": 5,
       "itemName": "Widget E",
       "itemUrl": "../assets/goods5.jpg",
       "itemValue": 7.99,
-      "dateAdded": "2023-07-05",
-      "action": ""
+      "code": "GDK5",
+      "action": 5
     },
     {
       "itemName": "Widget F",
       "itemUrl": "https://example.com/widget-f",
       "itemValue": 12.99,
-      "dateAdded": "2023-07-06"
+      "code": "GDK6",
+      "action": 18
     },
     {
       "itemName": "Widget G",
       "itemUrl": "https://example.com/widget-g",
       "itemValue": 9.99,
-      "dateAdded": "2023-07-07"
+      "code": "GDK7",
+      "action": 16
     },
     {
       "itemName": "Widget H",
       "itemUrl": "https://example.com/widget-h",
       "itemValue": 11.99,
-      "dateAdded": "2023-07-08"
+      "code": "GDK8",
+      "action": 23
     },
     {
       "itemName": "Widget I",
       "itemUrl": "https://example.com/widget-i",
       "itemValue": 6.99,
-      "dateAdded": "2023-07-09"
+      "code": "GDK9",
+      "action": 15
     },
     {
       "itemName": "Widget J",
       "itemUrl": "https://example.com/widget-j",
       "itemValue": 14.99,
-      "dateAdded": "2023-07-10"
+      "code": "GDK10",
+      "action": 6
     },
     {
       "id": 6,
       "itemUrl": "this.png",
       "itemName": "oil",
       "itemValue": "2000",
-      "dateAdded": "",
-      "action": ""
+      "code": "GDK11",
+      "action": 2
     },
     {
       "id": 7,
       "itemUrl": "image3.jpg",
       "itemName": "Scalp Oil",
       "itemValue": "2000",
-      "dateAdded": "",
-      "action": ""
+      "code": "GDK12",
+      "action": 7
     }
   ]
 }
