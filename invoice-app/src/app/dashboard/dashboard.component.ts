@@ -10,6 +10,18 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SweetAlertService } from '../sweet-alert.service';
 import { MatMenu, MatMenuContent, MatIcon } from '@angular/material';
 import { OrderGoodsDialogComponent } from '../order-goods-dialog/order-goods-dialog.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+// import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { Data } from '@angular/router';
+import { DatePipe } from '@angular/common';
+
+
 
 export interface Menu_products{
   id: number;
@@ -30,6 +42,8 @@ export interface order_items{
   qty:number;
   itemValue: number;
   code: string;
+  invoice_date:string;
+  // payment_due:string;
 
 };
 
@@ -44,10 +58,11 @@ export interface order_items{
 export class DashboardComponent implements OnInit {
 
   displayedColumns = ['id','itemName','itemUrl','itemValue','code','action'];
-  displayedOrderColumns = ['id','firstlastname','address','phone','email','itemName','qty', 'itemValue', 'code', 'action'];
+  displayedOrderColumns = ['id','firstlastname','address','phone','email','itemName','qty', 'itemValue', 'code', 'invoice_date', 'payment_due', 'action'];
 
   dataSource!: MatTableDataSource<any>;
   orderDataSource!: MatTableDataSource<any>;
+  invoice_details;
 
   trendingcomboList : Menu_products[] = [];
   isContinue = true;
@@ -60,41 +75,21 @@ export class DashboardComponent implements OnInit {
     private _dialog: MatDialog,
     private _orderService: OrderService,
     private _sweetAlerts: SweetAlertService,
+    private _date: DatePipe,
   ) {}
 
   
 ngOnInit(): void {
-  this.getcomboList();
+  this.getGoodsList();
   this.getOrderList();
 
 }
 
 
-openAddEditMealForm() {
-  const dialogRef = this._dialog.open(GoodsExStockComponent,{width:"55%"});
-  dialogRef.afterClosed().subscribe({
-    next: (val) => {
-      if (val) {
-        console.log(val);
-        this.getcomboList();
-      }
-    },
-  });
-}
-openOrderItemForm() {
-  const dialogRef = this._dialog.open(OrderGoodsDialogComponent,{width:"100%"});
-  dialogRef.afterClosed().subscribe({
-    next: (val) => {
-      if (val) {
-        console.log(val);
-        this.getOrderList();
-      }
-    },
-  });
-}
 
-getcomboList() {
-  this._orderService.getcomboList().subscribe({
+
+getGoodsList() {
+  this._orderService.getItemList().subscribe({
     next: (res) => {
       console.log('creeesults',res);
 
@@ -109,17 +104,55 @@ getcomboList() {
 }
 
 
-getOrderList() {
-  this._orderService.getOrderList().subscribe(res => {
-      console.log('creeesults',res);
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
 
-      this.orderDataSource = new MatTableDataSource(res);
-      console.log('cresults',res[0]);
-      
-      // this.dataSource.sort = this.sort;
-      // this.dataSource.paginator = this.paginator;
-  })
-    error: console.log
+  if (this.dataSource.paginator) {
+    this.dataSource.paginator.firstPage();
+  }
+}
+
+
+openAddEditOrderForm() {
+  const dialogRef = this._dialog.open(GoodsExStockComponent,{width:"55%"});
+  dialogRef.afterClosed().subscribe({
+    next: (val) => {
+      if (val) {
+        console.log(val);
+        this.getGoodsList();
+      }
+    },
+  });
+}
+
+
+deleteGoodsList(id: number) {
+  this._orderService.deleteList(id).subscribe({
+    next: (res) => {
+      this._sweetAlerts.showSuccessAlert("Order item deleted successfully!", 'success');
+      this.getGoodsList();
+    },
+    error: console.log,
+  });
+}
+
+
+
+
+
+
+
+openOrderItemForm() {
+  const dialogRef = this._dialog.open(OrderGoodsDialogComponent,{width:"55%", height:"90%"});
+  dialogRef.afterClosed().subscribe({
+    next: (val) => {
+      if (val) {
+        console.log(val);
+        this.getOrderList();
+      }
+    },
+  });
 }
 
 deleteOrder(id: number) {
@@ -132,74 +165,190 @@ deleteOrder(id: number) {
   });
 }
 
-
-
-
-////
-applyFilter(event: Event) {
-  const filterValue = (event.target as HTMLInputElement).value;
-  this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  if (this.dataSource.paginator) {
-    this.dataSource.paginator.firstPage();
-  }
-}
-////
-
-
-deletecombomeal(id: number) {
-  this._orderService.deletecombomeal(id).subscribe({
-    next: (res) => {
-      this._sweetAlerts.showSuccessAlert("Order item deleted successfully!", 'success');
-      this.getcomboList();
-    },
-    error: console.log,
-  });
-}
-
-
-openEditForm(data: any) {
-  const dialogRef = this._dialog.open(GoodsExStockComponent, {
-    data,
-  });
+openEditOrderForm(data: any) {
+  const dialogRef = this._dialog.open(OrderGoodsDialogComponent, {data, width:"55%", height:"80%"});
 
   dialogRef.afterClosed().subscribe({
    next: (val) => {
     console.log('val', val);
       if (val) {
-        this.getcomboList();
+        this.getOrderList();
       }
    },
   });
 }
 
 
-  // ngOnInit() {
-  //   this.applicationDetailsForm = this._formBuilder.group({
-  //     itemname: ['', Validators.required],
-  //     description: [''],
-  //     qty:[''],
-  //     price: [''],
-  //     total:[''],
-  //     action:[''],
-  //   });
-  //  }
 
-    // createRequest() {
-    //   // this.loading = true;
-    //   // this.applicationDetailsForm.value.documents = this.application_documents;
-    //   // this.applicationDetailsForm.value.applicant_type = this.account_type;
-    //   // this.applicationDetailsForm.value.additional_details = this.additionalInfo;
-    //   // this.applicationDetailsForm.value.items = this.appeal_reasons;
-    //   this._orderService.createRequest(this.applicationDetailsForm.value).subscribe(res => {
-    //     this.request_details = res;
-    //     // this.loading = false;
-    //     this._sweetAlerts.showSuccessAlert('Appeal Application successfully submitted!');
-    //     // this._router.navigate(['/user/MoLPP/registration/appeal-of-stamp-duty/applications']);
-    //   //  'Ongoing', this.request_details['request_id']
-    //   }, err => {
-    //     // this.loading = false;
-    //   });
-    // }
+getOrderList() {
+  this._orderService.getOrderList().subscribe(res => {
+      console.log('invoice details',res);
+      this.invoice_details = res;
+      console.log('this.invoice_details');
+      
+      this.orderDataSource = new MatTableDataSource(res);
+      console.log('cresults',res[0]);
+      
+      
+      // this.dataSource.sort = this.sort;
+      // this.dataSource.paginator = this.paginator;
+  });
+    // error: console.log
+
+
+}
+
+printPdf(order){
+
+  const details = []
+  const inv = []
+  const invkeys = []
+  const lpoinv = []
+//  let amount = ((lpoinv[1] )*( lpoinv[2]));
+
+
+
+  for (let [k, v] of Object.entries(order)){
+    if(['firstlastname', 'address', 'phone', 'email'].includes(k)){
+      details.push(v + '\n\n')
+    
+    }else if(['invoice_number', 'invoice_date', 'payment_due'].includes(k)){
+      if(k.includes('date')){
+        v = this._date.transform(v)
+      }
+        inv.push(v + '\n\n')
+        invkeys.push(k + ':\n\n')    
+      }
+
+      if(['itemName', 'qty', 'itemValue'].includes(k)){
+        lpoinv.push(v)
+      }
+      
+        // let amount = (lpoinv[1])*(lpoinv[2]);
+
+  }
+  
+    
+  pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+    
+  this.invoice_details = {
+    content: [
+      'Sample Invoice\n\n',
+
+      {
+        text: 'INVOICE\n\n',
+        style:	{fontSize: 24,
+        bold: true}
+      },
+      // {
+        // text: 
+        'Mangata Beauty Products Ltd\n\n',
+        'P.O Box 14232-100 Nairobi\n\n',
+        '0799966666\n\n',
+        'doejohn@gmail.con\n\n\n',
+      {
+        margin: [15, 10],
+        text:'Bill To:',
+        bold: true
+      },
+      
+      // 	style: ''
+      // },
+      {
+        
+        alignment: 'justify',
+        columns: [
+
+         
+          {
+          
+            type: 'none',
+            ul: details,    
+               
+          },
+          {
+            columns: [
+              {
+                type: 'none',
+                ul: invkeys,
+              },
+              {
+                type: 'none',
+                ul: inv,
+              }
+            ]
+           
+            
+           }
+        ],
+   
+      },
+      '\n\n\n',
+      // {text: 'lightHorizontalLines:', fontSize: 14, bold: true, margin: [0, 20, 0, 8]},
+      {
+        style: 'tableExample \n\n\n\n',
+        table: {
+          headerRows: 1,
+          body: [
+            [{text: 'Item', style: 'tableHeader'}, {text: 'Quantity', style: 'tableHeader'}, {text: 'Price per unit', style: 'tableHeader'}, {text: 'Amount', style: 'tableHeader'}],
+            [lpoinv[0], lpoinv[1]+ 'Pcs','$' + lpoinv[2],'$' + ((lpoinv[1])*(lpoinv[2])).toFixed(2)],
+            ['', '', '',  '\n\n'],
+            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'Subtotal', style: 'tableHeader'}, {text: ' $'+( (lpoinv[1])*(lpoinv[2])).toFixed(2)}],
+            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'Tax 16%', style: 'tableHeader'}, {text:  '$' + (0.16*((lpoinv[1])*(lpoinv[2]))).toFixed(2)}],
+            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'Fees/discounts', style: 'tableHeader'}, {text:  '$' + 0}],
+            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'TOTAL', style: 'tableHeader'}, {text:  '$' + (0.84 * ((lpoinv[1])*(lpoinv[2]))).toFixed(2)}],
+
+          ]
+        },
+        layout: 'lightHorizontalLines'
+      },
+
+      
+      {
+        margin: [0, 40, 0, 20],
+
+        text:'Terms and Conditions',
+        bold: true
+      },
+
+      'All Prices Subject to VAT\n\n',
+      'Goods not collected after 3 Months are subject to sale\n\n',
+      'Invoices to be paid within 30 days from invoice date.\n\n'
+    ],
+
+    styles: {
+      header: {
+        fontSize: 18,
+        bold: true,
+        margin: [0, 0, 0, 10]
+      },
+      subheader: {
+        fontSize: 16,
+        bold: true,
+        margin: [0, 10, 0, 5]
+      },
+      tableExample: {
+        margin: [0, 5, 0, 15]
+      },
+      tableHeader: {
+        bold: true,
+        fontSize: 13,
+        color: 'black'
+      }
+    },
+    
+  }
+  this.openPdf();
+}
+
+openPdf(){
+  pdfMake.createPdf(this.invoice_details).open();
+
+}
+
+
+
+
 
 }

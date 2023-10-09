@@ -1,11 +1,8 @@
-// .results {
-//     display: grid;
-//     column-gap: 14px;
-//     row-gap: 14px;
-//     grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
-//     margin-top: 50px;
-//     justify-content: space-around;
-//   }
+
+.title{
+  margin-top: -150px;
+  margin-left: 300px;
+}
   
   input[type="text"] {
     border: solid 1px var(--primary-color);
@@ -44,13 +41,23 @@
   .comboss{
     margin:80px 0 0 70px;
   }
-  .comboss .addmealbtn button{
+  .comboss .additembtn button{
       
     height:35px;
     width:100px;
     background-color:#6d5e38 ;
     color: white;
   
+  }
+
+   .printbtn button{  
+    height:20px;
+    width:70px;
+    background-color:#6d5e38 ;
+    color: white;
+    margin: 35px 0 0 25px;
+    // text-align: center;
+
   }
   
   /*searchform*/

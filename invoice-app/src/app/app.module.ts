@@ -18,13 +18,17 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpEventType } from '@angular/common/http';
+import {MatCardModule} from '@angular/material/card';
 import { MatMenuModule } from '@angular/material';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+// import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OrderGoodsDialogComponent } from './order-goods-dialog/order-goods-dialog.component'; 
+import { OrderGoodsDialogComponent } from './order-goods-dialog/order-goods-dialog.component';
+import { DatePipe } from '@angular/common';
+
 
 
 @NgModule({
@@ -57,10 +61,13 @@ import { OrderGoodsDialogComponent } from './order-goods-dialog/order-goods-dial
     MatSnackBarModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    // MatExpansionModule,
+    // MatAccordion
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [ GoodsExStockComponent ],
+  entryComponents: [ GoodsExStockComponent, OrderGoodsDialogComponent ],
 })
 export class AppModule { }

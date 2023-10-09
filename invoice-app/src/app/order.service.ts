@@ -10,32 +10,29 @@ export class OrderService {
 
   constructor(    private _http: HttpClient) { }
 
-  createRequest(data) {
-    return this._http.post('http://localhost:3000/menucombomeal', data);
-  }
 
   getCustomerDetails(): Observable<any> {
-    return this._http.get('http://localhost:3000/menucombomeal');
+    return this._http.get('http://localhost:3000/menuItems');
   }
 
-  getcomboList(): Observable<any> {
-    return this._http.get('http://localhost:3000/menucombomeal'); 
+  getItemList(): Observable<any> {
+    return this._http.get('http://localhost:3000/menuItems'); 
   }
   getOrderList(): Observable<any> {
     return this._http.get('http://localhost:3000/orderDetails'); 
   }
 
 
-  deletecombomeal(id: number): Observable<any> {
-    return this._http.delete(`http://localhost:3000/menucombomeal/${id}`);
+  deleteList(id: number): Observable<any> {
+    return this._http.delete(`http://localhost:3000/menuItems/${id}`);
   }
 
-  updatecombomeal(id: number, data: any): Observable<any> {
-    return this._http.put(`http://localhost:3000/menucombomeal/${id}`, data);
+  updateGoodsExstock(id: number, data: any): Observable<any> {
+    return this._http.put(`http://localhost:3000/menuItems/${id}`, data);
   }
 
-  addcombomeal(data: any): Observable<any> {
-    return this._http.post('http://localhost:3000/menucombomeal', data);
+  addGoodsExstock(data: any): Observable<any> {
+    return this._http.post('http://localhost:3000/menuItems', data);
   }
 
   deleteOrder(id: number): Observable<any> {
@@ -49,6 +46,7 @@ export class OrderService {
   addOrder(data: any): Observable<any> {
     return this._http.post('http://localhost:3000/orderDetails', data);
   }
+
 
 
 }

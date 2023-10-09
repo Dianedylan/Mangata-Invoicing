@@ -1,25 +1,32 @@
+<!-- <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+        Order Details
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
 
+</mat-accordion> -->
 <form [formGroup]="orderForm" (ngSubmit)="onFormSubmit()">
     <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Item name" formControlName="firstlastname">
+        <input matInput placeholder="eg. customer/company name" formControlName="firstlastname">
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Address</mat-label>
-        <input matInput placeholder="" formControlName="address">
+        <input matInput placeholder="address" formControlName="address">
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Phone number</mat-label>
-        <input matInput placeholder="Item name" formControlName="phone">
+        <input matInput placeholder="phone no." formControlName="phone">
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Item name" formControlName="email">
+        <input matInput placeholder="email" formControlName="email">
     </mat-form-field>
   
   <mat-form-field appearance="outline">
       <mat-label>Item</mat-label>
-      <input matInput placeholder="Item name" formControlName="ItemName">
+      <input matInput placeholder="Item name" formControlName="itemName">
   </mat-form-field>
 
   <mat-form-field appearance="outline">
@@ -31,18 +38,25 @@
       <mat-label>Price Per Unit</mat-label>
       <input placeholder="cost" matInput formControlName="itemValue">
   </mat-form-field>
-
-  <!-- <mat-form-field appearance="outline">
-      <mat-label>Date Added</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dateAdded">
+  
+<mat-form-field appearance="outline">
+    <mat-label>Item code</mat-label>
+    <input placeholder="Add item code" matInput formControlName="code">
+</mat-form-field>
+  <mat-form-field appearance="outline">
+      <mat-label>Invoice Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="invoice_date">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field> -->
-  
-<mat-form-field appearance="outline">
-    <input placeholder="Add item code" matInput formControlName="code">
-</mat-form-field>
+  </mat-form-field>
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>Payment Due</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="payment_due">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field> -->
   
 <div mat-dialog-actions class="action">
   <!-- <button mat-raised-button type="button" [mat-dialog-close]="false">Close</button> -->

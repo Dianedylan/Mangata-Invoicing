@@ -13,18 +13,18 @@ export class GoodsExStockComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _empService: OrderService,
+    private _GONService: OrderService,
     private _sweetAlerts: SweetAlertService,
     private _dialogRef: MatDialogRef<GoodsExStockComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
   ngOnInit(): void {
-    this.combomealForm.patchValue(this.data);
+    this.goodsExstockForm.patchValue(this.data);
   }
 
     
-  combomealForm = new FormGroup({
+  goodsExstockForm = new FormGroup({
     id: new FormControl(""),
      code: new FormControl("", Validators.required),
      itemName: new FormControl("", Validators.required),
@@ -35,30 +35,26 @@ export class GoodsExStockComponent implements OnInit {
 
     
    onFormSubmit() {
-    if (this.combomealForm.valid) {
+    if (this.goodsExstockForm.valid) {
       if (this.data) {
-        this._empService.updatecombomeal(this.data.id, this.combomealForm.value).subscribe({
+        this._GONService.updateGoodsExstock(this.data.id, this.goodsExstockForm.value).subscribe({
             next: (val: any) => {
-              //this._coreService.openSnackBar('Employee details updated!');
-              this._sweetAlerts.showSuccessAlert("Meal details updated successfully!");
+              this._sweetAlerts.showSuccessAlert("New details updated successfully!");
               this._dialogRef.close(true);
             },
             error: (err: any) => {
               console.error(err);
-              //Swal.fire('Please Enter valid data)', 'error');
             },
           });
       } else {
-        this._empService.addcombomeal(this.combomealForm.value).subscribe( res => {
+        this._GONService.addGoodsExstock(this.goodsExstockForm.value).subscribe( res => {
         
-            // console.log('valuesss', value.details[0].menuItems);
-            this._sweetAlerts.showSuccessAlert("Meal details added successfully!");
+            this._sweetAlerts.showSuccessAlert("New details added successfully!");
             this._dialogRef.close(true);
           },
           
           err => {
             console.error(err);
-          // Swal.fire('Please Enter valid data)', 'error');
           },
         );
       }
