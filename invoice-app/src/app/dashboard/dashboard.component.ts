@@ -216,6 +216,9 @@ printPdf(order){
       if(k.includes('date')){
         v = this._date.transform(v)
       }
+      if(k.includes('due')){
+        v = this._date.transform(v)
+      }
         inv.push(v + '\n\n')
         invkeys.push(k + ':\n\n')    
       }
