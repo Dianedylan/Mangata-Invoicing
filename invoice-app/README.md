@@ -9,19 +9,19 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## To Generate the PDF
 
+Fill in the details in the dialog forms:
+All fields in the form are required
+
+The invoice number and payment date are automatically generated thus not included in the form
+#### PDF
+Once the form is filled and submitted, a button to print the pdf is available on the resulting data table.
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Docker Hub
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To pull image from docker hub, check out the [invoice-app:v1.1](https://hub.docker.com/repository/docker/diacode/invoice-app/).
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
