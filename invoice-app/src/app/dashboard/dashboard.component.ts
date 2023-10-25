@@ -58,7 +58,7 @@ export interface order_items{
 export class DashboardComponent implements OnInit {
 
   displayedColumns = ['id','itemName','itemUrl','itemValue','code','action'];
-  displayedOrderColumns = ['id','firstlastname','address','phone','email','itemName','qty', 'itemValue', 'code', 'invoice_date', 'payment_due', 'action'];
+  displayedOrderColumns = ['id','firstlastname','address','phone','email','itemName','qty', 'itemValue', 'code', 'invoice_date', 'action'];
 
   dataSource!: MatTableDataSource<any>;
   orderDataSource!: MatTableDataSource<any>;

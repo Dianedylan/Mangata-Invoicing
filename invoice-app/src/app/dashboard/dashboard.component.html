@@ -7,10 +7,7 @@
         <h1>Mangata Products </h1>
         <h2>Tax Invoice</h2>
       </div>
-
-    </header>
-
-    <div class="menubar">
+      <div class="menubar">
         <!-- <p>Menu Items</p> -->
         <form class="input" action="/action_page.php">
             <input type="text" placeholder="Search Item" name="search" #filter  (keyup)="applyFilter($event)" #input>
@@ -18,6 +15,9 @@
           </form>
 
     </div>
+    </header>
+
+
     
     <br>
 <!--     
@@ -28,20 +28,18 @@
     </mat-accordion> -->
 <section class="comboss"  fxLayout="column">
 
-    <!-- <div article-title><p>Meals</p></div> -->
-    <div class="addmealbtn"><button (click)="openAddEditOrderForm()" name="category" id="category" placeholder="select category" ><!--The dropdown, to hide or show a form contents-->
+    <div class="addmealbtn"><button (click)="openAddEditOrderForm()" name="category" id="category" placeholder="select category" >
         Add Item</button>
-        
    </div> 
    
 
-    <mat-card class="" fxFlex="50%" >
+    <mat-card class=""  >
         <mat-card-title> Items Ex-Stock</mat-card-title>
         <table  class="tabled" mat-table [dataSource] = "dataSource" matSort>
                 <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
-                    <td mat-cell *matCellDef="let row"> {{row.id}}</td>
-                </ng-container>
+                    <td mat-cell *matCellDef="let row;let i=index">{{i+1}}</td>
+                  </ng-container>
                 <!--image to figure shortly-->
                 <ng-container matColumnDef="itemName">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Item Name </th>
@@ -55,7 +53,7 @@
   
               <ng-container matColumnDef="itemValue">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>itemValue</th>
-                <td mat-cell *matCellDef="let row"> {{row.itemValue}}</td>
+                <td mat-cell *matCellDef="let row">$ {{row.itemValue}}</td>
               </ng-container>
   
               <ng-container matColumnDef="code">
@@ -66,21 +64,8 @@
               
               <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Qty In </th>
-                <td mat-cell *matCellDef="let row"> {{row.action}}</td>
+                <td mat-cell *matCellDef="let row"> {{row.action}} Pcs</td>
               </ng-container> 
-              
-  
-               <!-- <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-                <td mat-cell *matCellDef="let row">
-                  <button mat-icon-button color="primary" (click)="openEditSForm(row)">
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                  <button mat-icon-button color="warn" (click)="deleteSinglemeal(row.id)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </td>
-              </ng-container>  -->
   
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -97,7 +82,7 @@
       <!-- style="width: 133px; height: 20px; color: black;" -->
     <!-- </mat-menu>  -->
   
-  <mat-card  fxFlex="50%">
+  <mat-card style="margin-top: 2%;" >
     <div class="additembtn"><button (click)="openOrderItemForm()" mat-menu-item>Make Order</button></div>
 
       <table mat-table [dataSource] = "orderDataSource" matSort>
@@ -122,7 +107,7 @@
           </ng-container>
   
           <ng-container matColumnDef="email">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email Address</th>
               <td mat-cell *matCellDef="let row">{{row.email}}</td>
             </ng-container>
    
@@ -133,12 +118,12 @@
   
          <ng-container matColumnDef="qty">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Order Qty </th>
-          <td mat-cell *matCellDef="let row"> {{row.qty}}</td>
+          <td mat-cell *matCellDef="let row"> {{row.qty}} Pcs</td>
         </ng-container> 
   
         <ng-container matColumnDef="itemValue">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>itemValue</th>
-          <td mat-cell *matCellDef="let row"> {{row.itemValue}}</td>
+          <td mat-cell *matCellDef="let row">$ {{row.itemValue}}</td>
         </ng-container>
   
         <ng-container matColumnDef="code">
@@ -151,23 +136,18 @@
             <td mat-cell *matCellDef="let row"> {{row.invoice_date | date}}</td>
           </ng-container> 
 
-          <ng-container matColumnDef="payment_due">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Due </th>
-            <td mat-cell *matCellDef="let row"> {{row.payment_due | date}}</td>
-          </ng-container> 
-
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button color="primary" (click)="openEditOrderForm(row)">
-              <mat-icon>edit</mat-icon>
+              <mat-icon style="margin-bottom: 20px;">edit</mat-icon>
             </button>
             <button mat-icon-button color="warn" (click)="deleteOrder(row.id)">
-              <mat-icon>delete</mat-icon>
+              <mat-icon style="margin-bottom: 20px;">delete</mat-icon>
             </button>
-            <div class="printbtn"><button (click)="printPdf(row)" >
-                 Print</button></div>
-            <!-- <div class="printbtn"><button (click)="printPdf()" mat-menu-item>Print Pdf</button></div> -->
+            <button mat-icon-button  (click)="printPdf(row)">
+              <mat-icon class="printbtn" style="margin-bottom: 20px;">download</mat-icon>
+            </button>
           </td>
         </ng-container>
 
