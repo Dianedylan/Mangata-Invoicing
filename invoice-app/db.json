@@ -53,42 +53,32 @@
   ],
   "orderDetails": [
     {
-      "firstlastname": "John Doe",
+      "invoice_number": "INV4911",
+      "firstlastname": "Phoina Clinic",
+      "address": "Nairobi",
+      "phone": "0712333333",
+      "email": "phoy@gmail.com",
+      "itemName": "Hair Moisturizer",
+      "qty": "3",
+      "itemValue": "40",
+      "code": "GDK21",
+      "invoice_date": "2023-10-23T21:00:00.000Z",
+      "payment_due": "2023-11-24",
+      "id": 6
+    },
+    {
+      "invoice_number": "INV3613",
+      "firstlastname": "Marini Naturals",
       "address": "MSA",
-      "phone": "0711111111",
-      "email": "john@gmail.con",
-      "itemName": "Widget A",
-      "qty": 3,
-      "itemValue": "10.98",
-      "code": "GDK1",
-      "invoice_date": "2023-10-03T21:00:00.000Z",
-      "id": 1
-    },
-    {
-      "firstlastname": "creme",
-      "address": "Leipzig",
-      "phone": "0712555613",
-      "email": "leip@gmail.com",
-      "itemName": "Knuckle oil",
-      "qty": "1",
-      "itemValue": "10.66",
-      "code": "GDK27",
-      "invoice_date": "2023-10-04T21:00:00.000Z",
-      "invoice_number": "INV9093",
-      "id": 4
-    },
-    {
-      "firstlastname": "Marini",
-      "address": "Kajiado",
-      "phone": "0711111111",
-      "email": "mari@naturals.com",
+      "phone": "0723222222",
+      "email": "mari@gmail.com",
       "itemName": "Face Cream",
-      "qty": "5",
-      "itemValue": "12.54",
-      "code": "GDK25",
-      "invoice_date": "2023-10-06T21:00:00.000Z",
-      "invoice_number": "INV3952",
-      "id": 5
+      "qty": "4",
+      "itemValue": "25",
+      "code": "GDK12",
+      "invoice_date": "2023-10-17T21:00:00.000Z",
+      "payment_due": "2023-11-24",
+      "id": 7
     }
   ],
   "menuItems": [

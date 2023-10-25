@@ -16,9 +16,7 @@
             <input type="text" placeholder="Search Item" name="search" #filter  (keyup)="applyFilter($event)" #input>
             <button type="submit"  (click)="filterResults(filter.value)">Search</button>
           </form>
-          <!-- <form class="input" action="/action_page.php">
-         <-- <div class="mealadding"><button type="submit"  mat-raised-button (click)="openAddCategoryForm()">Add Category</button></div>
-          </form> -->
+
     </div>
     
     <br>
@@ -34,12 +32,6 @@
     <div class="addmealbtn"><button (click)="openAddEditOrderForm()" name="category" id="category" placeholder="select category" ><!--The dropdown, to hide or show a form contents-->
         Add Item</button>
         
-         <!-- <div>
-            <button [mat-dialog-close]="isContinue" cdkFocusInitial class="close-icon-button" mat-dialog-actions
-              mat-icon-button>
-              <mat-icon>cancel</mat-icon>
-            </button>
-         </div> --> 
    </div> 
    
 
@@ -179,14 +171,6 @@
           </td>
         </ng-container>
 
-        <!-- <ng-container matColumnDef="pdf">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-            <td mat-cell *matCellDef="let row">
-            <div class="printbtn"><button (click)="printPdf()" mat-button>Print Pdf</button></div>
-            </td>
-        </ng-container> -->
-
-
   
         <tr mat-header-row *matHeaderRowDef="displayedOrderColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedOrderColumns;"></tr>
@@ -199,118 +183,6 @@
   </mat-card>
 
 </section>
-
-<!-- <button class="addmealbtn rounded-right" style="width: 33px; border-left: 1px solid gainsboro;"  [matMenuTriggerFor]="menu" #t="matMenuTrigger">
-    <mat-icon  *ngIf="!t.menuOpen">expand_more</mat-icon>
-    <mat-icon  *ngIf="t.menuOpen">expand_less</mat-icon>
-</button> -->
-  <!-- <mat-menu #menu="matMenu" xPosition="before"> -->
-
-
- 
-    <!-- <mat-horizontal-stepper #stepper [linear]="false">
-    <mat-step [stepControl]="applicationDetailsForm">
-        <ng-template matStepLabel>Order details</ng-template>
-        <div class="section_header">
-          <h4 class="title">Application details</h4>
-        </div>
-        <div class="row_section_margins" fxLayout="row" fxLayoutAlign="start start" fxLayout.xs="column"
-             fxLayoutGap="50px"
-             fxLayoutGap.xs="5px">
-
-            <div fxFlex="" [formGroup]="applicationDetailsForm">
-              <label>Application ref. No:</label>
-              <span aria-required="true" class="required"> *</span><br>
-              <mat-form-field appearance="outline" class="form_field" style="width: 50%;">
-                <input formControlName="itemname" matInput placeholder="Ref. Number"
-                       aria-required="true" type="text">
-                <mat-error *ngIf="!applicationDetailsForm.hasError('itemname', 'required')"
-                           class="text-danger small position-absolute">Item name required
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="form_field" style="width: 50%;">
-                <input formControlName="description" matInput placeholder="eg. size, model"
-                       aria-required="true" type="text">
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="form_field" style="width: 50%;">
-                <input formControlName="qty" matInput placeholder="Ref. Number"
-                       aria-required="true" type="number">
-                <mat-error *ngIf="!applicationDetailsForm.hasError('reference_number', 'required')"
-                           class="text-danger small position-absolute">Quantity is required
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="form_field" style="width: 50%;">
-                <input formControlName="price" matInput placeholder="Ref. Number"
-                       aria-required="true" type="number">
-                <mat-error *ngIf="!applicationDetailsForm.hasError('price', 'required')"
-                           class="text-danger small position-absolute">Price is required
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="form_field" style="width: 50%;">
-                <input formControlName="total" matInput placeholder="Ref. Number"
-                       aria-required="true" type="number">
-              </mat-form-field>
-
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="form_field" style="width: 50%;">
-                <button formControlName="action" mat-raised-button
-                       aria-required="true">Delete</button>
-              </mat-form-field>
-            </div>
-        </div>
-
-            <div class="section_header">
-              <h4 class="title">Purchase Details</h4>
-            </div>
-
-            <div class="row_section_margins" fxLayout="row" fxLayoutAlign="start start" fxLayout.xs="column"
-             fxLayoutGap="50px"
-             fxLayoutGap.xs="5px">
-
-             <div fxFlex="">
-              
-             <div [formGroup]="AppealReasonsForm">
-                <label>Reasons for appeal of stamp duty:</label>
-                <span aria-required="true" class="required"> * </span><br>
-                <mat-form-field appearance="outline" class="form_field_textarea" style="width: 100%;">
-                    <textarea formControlName="appeal_reasons" matInput placeholder="Reasons">
-                    </textarea>
-                </mat-form-field>
-                <br>
-                <button  class="form_button" color="primary" mat-raised-button [disabled]="applicationDetailsForm.invalid || AppealReasonsForm.invalid"
-                        (click)="addReason()">Add
-                </button>
-                 [disabled]="RefundReasonsForm.invalid" 
-              </div> 
-              </div>
-            </div>-->
-
-          
-                
-    <!-- <div class="row_section_margins" *ngFor="let info of appeal_reasons; let i = index;">
-          <h4 class="reason-title-box" *ngIf="appeal_reasons.length !==0">Reasons for Stamp Duty Appeal</h4>
-          
-          <div class="info" >
-            <div fxLayout="row">
-              <div fxFlex="" style="width: 100%">
-                <p>{{info}}</p> 
-              </div>
-              <div fxFlex="">
-             <i class="material-icons close-icon" (click)="removeReason(i)">close</i>
-              </div>
-            </div>
-          </div>
-        </div> 
-
-        <div>
-          <button class="form_button next_btn" color="primary" 
-                  mat-raised-button matStepperNext>Next
-          </button>
-         [disabled]="applicationDetailsForm.invalid" (click)="getStampDutyDetails()"
-           <button class="form_button back_btn" color="primary" mat-raised-button matStepperPrevious>Back</button> 
-        </div>
-      </mat-step>
-    </mat-horizontal-stepper> -->
     
 
 </main> 

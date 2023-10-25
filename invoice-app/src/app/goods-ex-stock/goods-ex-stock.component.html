@@ -2,10 +2,6 @@
 <h4 mat-dialog-title> Add Item</h4>
   
   <form [formGroup]="goodsExstockForm" (ngSubmit)="onFormSubmit()">
-    <!-- <mat-form-field appearance="outline">
-      <mat-label>Item No.</mat-label>
-      <input matInput type="text" placeholder="Enter number" formControlName="id">
-  </mat-form-field> -->
   
   <mat-form-field appearance="outline">
       <mat-label>Item Name</mat-label>
@@ -20,14 +16,6 @@
     <mat-label>Quantity</mat-label>
     <input placeholder="qty In" matInput formControlName="action">
 </mat-form-field>
-
-  <!-- <mat-form-field appearance="outline">
-      <mat-label>Date Added</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dateAdded">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field> -->
   
 <mat-form-field appearance="outline">
     <input placeholder="Add item code" matInput formControlName="code">
