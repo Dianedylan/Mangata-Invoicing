@@ -113,7 +113,7 @@
     {
       "id": 1,
       "itemName": "Widget A",
-      "itemUrl": "../assets/goods1.jpg",
+      "itemUrl": "assets/goods1.jpg",
       "itemValue": 10.99,
       "code": "GDK1",
       "action": 45
@@ -121,7 +121,7 @@
     {
       "id": 2,
       "itemName": "Widget B",
-      "itemUrl": "../assets/goods2.jpg",
+      "itemUrl": "assets/goods2.jpg",
       "itemValue": 5.99,
       "code": "GDK2",
       "action": 39
@@ -129,7 +129,7 @@
     {
       "id": 3,
       "itemName": "Widget C",
-      "itemUrl": "../assets/goods3.jpg",
+      "itemUrl": "assets/goods3.jpg",
       "itemValue": 8.99,
       "code": "GDK3",
       "action": 20
@@ -137,7 +137,7 @@
     {
       "id": 4,
       "itemName": "Widget D",
-      "itemUrl": "../assets/goods4.jpg",
+      "itemUrl": "assets/goods4.jpg",
       "itemValue": 15.99,
       "code": "GDK4",
       "action": 24
@@ -145,49 +145,49 @@
     {
       "id": 5,
       "itemName": "Widget E",
-      "itemUrl": "../assets/goods5.jpg",
+      "itemUrl": "assets/goods5.jpg",
       "itemValue": 7.99,
       "code": "GDK5",
       "action": 5
     },
     {
       "itemName": "Widget F",
-      "itemUrl": "https://www.istockphoto.com/photo/woman-cosmetologist-cosmetics-testing-natural-organic-cosmetics-serum-hair-mask-flat-gm1164263699-319967477",
+      "itemUrl": "assets/goods4.jpg",
       "itemValue": 12.99,
       "code": "GDK6",
       "action": 18
     },
     {
       "itemName": "Widget G",
-      "itemUrl": "https://example.com/widget-g",
+      "itemUrl": "assets/goods1.jpg",
       "itemValue": 9.99,
       "code": "GDK7",
       "action": 16
     },
     {
       "itemName": "Widget H",
-      "itemUrl": "https://example.com/widget-h",
+      "itemUrl": "assets/goods2.jpg",
       "itemValue": 11.99,
       "code": "GDK8",
       "action": 23
     },
     {
       "itemName": "Widget I",
-      "itemUrl": "https://example.com/widget-i",
+      "itemUrl": "assets/goods3.jpg",
       "itemValue": 6.99,
       "code": "GDK9",
       "action": 15
     },
     {
       "itemName": "Widget J",
-      "itemUrl": "https://example.com/widget-j",
+      "itemUrl": "assets/goods4.jpg",
       "itemValue": 14.99,
       "code": "GDK10",
       "action": 6
     },
     {
       "id": 6,
-      "itemUrl": "this.png",
+      "itemUrl": "assets/goods4.jpg",
       "itemName": "oil",
       "itemValue": "2000",
       "code": "GDK11",
@@ -195,7 +195,7 @@
     },
     {
       "id": 7,
-      "itemUrl": "image3.jpg",
+      "itemUrl": "assets/goods1.jpg",
       "itemName": "Scalp Oil",
       "itemValue": "2000",
       "code": "GDK12",
@@ -203,6 +203,7 @@
     },
     {
       "id": 8,
+      "itemUrl": "assets/goods5.jpg",
       "code": "GDK28",
       "itemName": "massage oil",
       "itemValue": "12.99",
