@@ -16,12 +16,17 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 // import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
-import * as pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Data } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
+const pdfMakeAny: any = pdfMake;
+const pdfFontsAny: any = pdfFonts;
+// pdfMakeAny.vfs = pdfFontsAny.pdfMake.vfs;
+(pdfMake as any).vfs = (pdfFonts as any).pdfMake.vfs;
 
+export type InvoicePdfOrder = Record<string, string | number | Date | null | undefined>;
 
 export interface Menu_products{
   id: number;
@@ -62,14 +67,14 @@ export class DashboardComponent implements OnInit {
 
   dataSource!: MatTableDataSource<any>;
   orderDataSource!: MatTableDataSource<any>;
-  invoice_details;
+  invoice_details: any = {};
 
   trendingcomboList : Menu_products[] = [];
   isContinue = true;
 
 
-  @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
-  @ViewChild(MatSort,  {static: false}) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private _dialog: MatDialog,
@@ -198,42 +203,43 @@ getOrderList() {
 
 }
 
-printPdf(order){
+printPdf(order: InvoicePdfOrder) {
 
-  const details = []
-  const inv = []
-  const invkeys = []
-  const lpoinv = []
-//  let amount = ((lpoinv[1] )*( lpoinv[2]));
-
+  const details: string[] = [];
+  const inv: string[] = [];
+  const invkeys: string[] = [];
+  const lpoinv: (string | number)[] = [];
 
 
-  for (let [k, v] of Object.entries(order)){
-    if(['firstlastname', 'address', 'phone', 'email'].includes(k)){
-      details.push(v + '\n\n')
-    
-    }else if(['invoice_number', 'invoice_date', 'payment_due'].includes(k)){
-      if(k.includes('date')){
-        v = this._date.transform(v)
+
+  for (const [k, v] of Object.entries(order)) {
+    if (['firstlastname', 'address', 'phone', 'email'].includes(k) && typeof v === 'string') {
+      details.push(v + '\n\n');
+    } else if (['invoice_number', 'invoice_date', 'payment_due'].includes(k)) {
+      let transformed: string | number | Date | null | undefined = v;
+      if (k.includes('date') && typeof transformed === 'string') {
+        transformed = this._date.transform(transformed);
       }
-      if(k.includes('due')){
-        v = this._date.transform(v)
+      if (k.includes('due') && typeof transformed === 'string') {
+        transformed = this._date.transform(transformed);
       }
-        inv.push(v + '\n\n')
-        invkeys.push(k + ':\n\n')    
+      if (typeof transformed === 'string') {
+        inv.push(transformed + '\n\n');
+        invkeys.push(k + ':\n\n');
       }
+    }
 
-      if(['itemName', 'qty', 'itemValue'].includes(k)){
-        lpoinv.push(v)
-      }
-      
-        // let amount = (lpoinv[1])*(lpoinv[2]);
-
+    if (['itemName', 'qty', 'itemValue'].includes(k) && (typeof v === 'string' || typeof v === 'number')) {
+      lpoinv.push(v);
+    }
   }
-  
-    
-  pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
+  const item = lpoinv[0] ? String(lpoinv[0]) : '';
+  const qty = Number(lpoinv[1] ?? 0);
+  const price = Number(lpoinv[2] ?? 0);
+  const amount = qty * price;
+  
+  pdfMakeAny.vfs = pdfFontsAny.pdfMake.vfs;
     
   this.invoice_details = {
     content: [
@@ -295,12 +301,12 @@ printPdf(order){
           headerRows: 1,
           body: [
             [{text: 'Item', style: 'tableHeader'}, {text: 'Quantity', style: 'tableHeader'}, {text: 'Price per unit', style: 'tableHeader'}, {text: 'Amount', style: 'tableHeader'}],
-            [lpoinv[0], lpoinv[1]+ 'Pcs','$' + lpoinv[2],'$' + ((lpoinv[1])*(lpoinv[2])).toFixed(2)],
+            [item, qty + ' Pcs', '$' + price.toFixed(2), '$' + amount.toFixed(2)],
             ['', '', '',  '\n\n'],
-            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'Subtotal', style: 'tableHeader'}, {text: ' $'+( (lpoinv[1])*(lpoinv[2])).toFixed(2)}],
-            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'Tax 16%', style: 'tableHeader'}, {text:  '$' + (0.16*((lpoinv[1])*(lpoinv[2]))).toFixed(2)}],
-            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'Fees/discounts', style: 'tableHeader'}, {text:  '$' + 0}],
-            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'TOTAL', style: 'tableHeader'}, {text:  '$' + (0.84 * ((lpoinv[1])*(lpoinv[2]))).toFixed(2)}],
+            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'Subtotal', style: 'tableHeader'}, {text: ' $' + amount.toFixed(2)}],
+            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'Tax 16%', style: 'tableHeader'}, {text: '$' + (0.16 * amount).toFixed(2)}],
+            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'Fees/discounts', style: 'tableHeader'}, {text: '$' + 0}],
+            [{text: '', style: 'tableHeader'}, {text: '', style: ''}, {text: 'TOTAL', style: 'tableHeader'}, {text: '$' + (0.84 * amount).toFixed(2)}],
 
           ]
         },

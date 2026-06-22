@@ -93,6 +93,20 @@
       "invoice_date": "2023-10-11T21:00:00.000Z",
       "payment_due": "2023-11-24",
       "id": 8
+    },
+    {
+      "invoice_number": "INV7580",
+      "firstlastname": "joy dee",
+      "address": "nbo",
+      "phone": "0712890765",
+      "email": "dinahgatwiri1111@gmail.com",
+      "itemName": "beard oil",
+      "qty": "3",
+      "itemValue": "211",
+      "code": "bo12",
+      "invoice_date": "2026-06-21T21:00:00.000Z",
+      "payment_due": "2026-07-22",
+      "id": 9
     }
   ],
   "menuItems": [
@@ -138,7 +152,7 @@
     },
     {
       "itemName": "Widget F",
-      "itemUrl": "https://example.com/widget-f",
+      "itemUrl": "https://www.istockphoto.com/photo/woman-cosmetologist-cosmetics-testing-natural-organic-cosmetics-serum-hair-mask-flat-gm1164263699-319967477",
       "itemValue": 12.99,
       "code": "GDK6",
       "action": 18
