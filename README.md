@@ -29,3 +29,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Docker Hub
 
 To pull image from docker hub, check out the [invoice-app:v1.2](https://hub.docker.com/repository/docker/diacode/invoice-app/).
+
+## Github Pages deployment
+https://dianedylan.github.io/Mangata-Invoicing/
