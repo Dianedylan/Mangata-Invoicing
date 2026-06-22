@@ -118,6 +118,16 @@ applyFilter(event: Event) {
   }
 }
 
+filterResults(value: string) {
+  if (!this.orderDataSource) {
+    return;
+  }
+  this.orderDataSource.filter = (value || '').trim().toLowerCase();
+  if ((this.orderDataSource as any).paginator) {
+    (this.orderDataSource as any).paginator.firstPage();
+  }
+}
+
 
 openAddEditOrderForm() {
   const dialogRef = this._dialog.open(GoodsExStockComponent,{width:"55%"});
