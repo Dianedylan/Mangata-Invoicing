@@ -54,11 +54,16 @@ export class OrderGoodsDialogComponent implements OnInit {
             },
           });
       } else {
-        const payload = {
-          invoice_number : this.generateUniqueInvNumber(),
-          ...this.orderForm.value,
-          payment_due: this.createPaymentDueDate(),
-        }
+                const formValue = this.orderForm.value;
+
+                const payload = {
+                  invoice_number: this.generateUniqueInvNumber(),
+                  ...formValue,
+                  invoice_date: formValue.invoice_date
+                    ? new Date(formValue.invoice_date).toISOString()
+                    : new Date().toISOString(),
+                  payment_due: this.createPaymentDueDate(),
+                };
         this._orderService.addOrder(payload).subscribe( res => {
         
             console.log('valuesss',[res]);
@@ -81,7 +86,7 @@ export class OrderGoodsDialogComponent implements OnInit {
   const random = Math.floor(Math.random() * 9000) + 1000;
 
   const orderNumber = `${prefix}${random}`;
-  console.log('odrdd', orderNumber);
+  console.log('oder number is:', orderNumber);
 
   return orderNumber;
 }

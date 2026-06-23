@@ -20,7 +20,8 @@ export class GoodsExStockComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.goodsExstockForm.patchValue(this.data);
+    const dataToPatch = this.data || {}; 
+    this.goodsExstockForm.patchValue(dataToPatch);
   }
 
     
@@ -30,10 +31,52 @@ export class GoodsExStockComponent implements OnInit {
      itemName: new FormControl("", Validators.required),
      itemValue: new FormControl("", Validators.required),
      dateAdded: new FormControl(""),
-     action: new FormControl("", Validators.required)
+     action: new FormControl("", Validators.required),
+     itemUrl: new FormControl("")
    });
 
-    
+      private assignImageToItem(itemName: string): string {
+
+    const name = (itemName || '').toLowerCase();
+
+    const imageMap = [
+      { keyword: 'jojoba', image: 'assets/jojoba.jpg' },
+      { keyword: 'massage', image: 'assets/massage.jpg' },
+      { keyword: 'beard', image: 'assets/beard.jpg' },
+      { keyword: 'scalp', image: 'assets/scalp.jpg' },
+
+      { keyword: 'cream', image: 'assets/cream.jpg' },
+      { keyword: 'moisturizer', image: 'assets/moisturizer.jpg' },
+      { keyword: 'lotion', image: 'assets/lotion.jpg' },
+
+      { keyword: 'hair', image: 'assets/hair-product.jpg' },
+      { keyword: 'shampoo', image: 'assets/shampoo.jpg' },
+      { keyword: 'conditioner', image: 'assets/conditioner.jpg' },
+
+      { keyword: 'soap', image: 'assets/soap.jpg' },
+      { keyword: 'cleanser', image: 'assets/cleanser.jpg' },
+      { keyword: 'wash', image: 'assets/bodywash.jpg' },
+      { keyword: 'oil', image: 'generic.jpg' }
+    ];
+
+    const match = imageMap.find(item =>
+      name.includes(item.keyword)
+    );
+
+    if (match) {
+      return match.image;
+    }
+
+    const fallbackImages = [
+      'assets/goods1.jpg',
+      'assets/goods2.jpg',
+      'assets/goods3.jpg',
+      'assets/goods4.jpg',
+      'assets/goods5.jpg'
+    ];
+
+    return fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
+  }
    onFormSubmit() {
     if (this.goodsExstockForm.valid) {
       if (this.data) {
@@ -47,7 +90,14 @@ export class GoodsExStockComponent implements OnInit {
             },
           });
       } else {
-        this._GONService.addGoodsExstock(this.goodsExstockForm.value).subscribe( res => {
+        const formValue = this.goodsExstockForm.value;   //method to assign image to item based on itemName
+
+        const payload = {
+          ...formValue,
+          itemUrl: this.assignImageToItem(formValue.itemName)
+        };
+
+        this._GONService.addGoodsExstock(payload).subscribe( res => {
         
             this._sweetAlerts.showSuccessAlert("New details added successfully!");
             this._dialogRef.close(true);
