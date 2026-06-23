@@ -45,13 +45,23 @@ export class OrderService {
     );
   }
 
-  getItemList(): Observable<any> {
-    return from(
-      db.ref('menuItems').once('value')
-    ).pipe(
-      map(snapshot => this.toArray(snapshot.val()))
-    );
-  }
+ getItemList(): Observable<any> {
+  return from(
+    db.ref('menuItems').once('value')
+  ).pipe(
+    map(snapshot => {
+      const items = this.toArray(snapshot.val());
+
+      return items.sort((a, b) =>
+        (a.itemName || '').localeCompare(
+          b.itemName || '',
+          undefined,
+          { sensitivity: 'base' }
+        )
+      );
+    })
+  );
+}
 
   getOrderList(): Observable<any> {
     return from(
